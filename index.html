@@ -1,189 +1,426 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALHAYA – Boutique Abaya & Boubou</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* ==== GLOBAL - Optimisé pour la vitesse ==== */
-body{margin:0;font-family:'Poppins',sans-serif;background:#fcfcfc;color:#333;}
-a{text-decoration:none;color:inherit;}
-.container{width:92%;margin:auto;max-width:1200px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALHAYA – Boutique Abaya & Boubou</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==== VARIABLES & GLOBAL ==== */
+        :root {
+            --primary: #b76e79;
+            --primary-dark: #a05d67;
+            --bg: #fcfcfc;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow-hover: 0 15px 30px rgba(0,0,0,0.12);
+        }
 
-/* ==== HEADER ==== */
-header{background:white;padding:15px 0;box-shadow:0 1px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}
-header .container{display:flex;align-items:center;justify-content:space-between;}
-.logo{font-size:28px;font-weight:700;color:#b76e79; letter-spacing: 2px;}
-nav a{margin:0 12px;font-weight:500;cursor:pointer; transition: 0.3s;}
-nav a:hover{color:#b76e79;}
-.search-box{border:1px solid #ddd;border-radius:30px;padding:5px 15px;display:flex;align-items:center;width:250px;background: #f9f9f9;}
-.search-box input{border:none;outline:none;background: transparent;flex:1;padding: 5px;}
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
 
-/* ==== HERO ==== */
-.hero{margin-top:10px;height:200px;background:#b76e79;display:flex;justify-content:center;align-items:center;color:white;font-size:32px;font-weight:600;text-align: center; border-radius: 0 0 20px 20px;}
+        .container {
+            width: 92%;
+            margin: auto;
+            max-width: 1200px;
+        }
 
-/* ==== PRODUCT GRID ==== */
-.section-title{text-align:center;font-size:28px;margin:35px 0 20px;color:#b76e79; font-weight: 700;}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-bottom:50px;}
-.product-card{border:none;border-radius:15px;overflow:hidden;text-align:center;transition:0.3s;background:#fff;box-shadow: 0 4px 15px rgba(0,0,0,0.05);}
-.product-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
-.product-card img{width:100%;height:380px;object-fit:cover; background: #eee;}
-.product-card h4{margin:15px 0 5px; font-size: 18px;}
-.product-card p{margin-bottom:15px;color:#b76e79;font-weight:700; font-size: 20px;}
-.btn{background:#b76e79;color:#fff;padding:12px 0;border:none;border-radius:25px;cursor:pointer;width:85%;margin:0 auto 20px;display: block; font-weight: 600; transition: 0.3s;}
-.btn:hover{background: #a05d67; transform: scale(1.02);}
+        /* ==== HEADER MODERNE ==== */
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* ==== CART POPUP ==== */
-#cartPopup{display:none;position:fixed;right:0;top:0;width:350px;height:100%;background:white;box-shadow:-5px 0 25px rgba(0,0,0,0.2);overflow:auto;z-index:1000; padding: 20px;}
-#cartPopup h3{border-bottom:2px solid #f4f4f4; padding-bottom: 15px; margin-bottom: 20px;}
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-/* ==== FOOTER ==== */
-footer{background:#111;padding:40px;text-align:center;color:white;margin-top:50px;}
-</style>
+        .logo {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+
+        .search-box {
+            border: 1px solid #eee;
+            border-radius: 50px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            width: 300px;
+            background: #f8f8f8;
+            transition: 0.3s;
+        }
+
+        .search-box:focus-within {
+            background: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.1);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover { color: var(--primary); }
+
+        #cartCount {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* ==== HERO SECTION ==== */
+        .hero {
+            margin: 20px 0;
+            height: 250px;
+            background: linear-gradient(rgba(183, 110, 121, 0.8), rgba(183, 110, 121, 0.8)), 
+                        url('https://images.unsplash.com/photo-1583394060263-fbb30983ad90?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .hero h1 { font-size: 40px; margin: 0; }
+        .hero p { font-size: 18px; font-weight: 300; }
+
+        /* ==== GRILLE DE PRODUITS ==== */
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 32px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in; /* Indique qu'on peut cliquer pour agrandir */
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover img { transform: scale(1.1); }
+
+        .card-info { padding: 20px; text-align: center; }
+        .card-info h4 { margin: 0 0 10px; font-size: 18px; color: #444; }
+        .card-info .price { font-size: 22px; color: var(--primary); font-weight: 800; margin-bottom: 15px; }
+
+        .btn-add {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover { background: var(--primary-dark); }
+
+        /* ==== ZOOM AUTO (MODALE) ==== */
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ==== PANIER POPUP ==== */
+        #cartPopup {
+            display: none;
+            position: fixed;
+            right: 0; top: 0;
+            width: 380px; height: 100%;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1500;
+            padding: 30px;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f9f9f9;
+            padding-bottom: 10px;
+        }
+
+        /* ==== FOOTER ==== */
+        footer {
+            background: #1a1a1a;
+            color: #ddd;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+        }
+
+        /* MOBILE ADAPTATION */
+        @media (max-width: 768px) {
+            .search-box { display: none; }
+            #cartPopup { width: 100%; }
+            .hero h1 { font-size: 28px; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <div class="logo">ALHAYA</div>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="searchProduct()">
-      <i class="fa fa-search" style="color:#888;"></i>
-    </div>
-    <nav>
-      <a onclick="showSection('shop')">Boutique</a>
-      <a onclick="showCart()" style="position: relative;">🛒 <span id="cartCount" style="color:#b76e79; font-weight: bold;"></span></a>
-    </nav>
-  </div>
-</header>
-
-<div class="hero">
-  <div>
-    Collections Ramadan 2026<br>
-    <small style="font-size: 16px; font-weight: 300;">L'élégance à l'ivoirienne</small>
-  </div>
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()">
+    <img id="zoomImg" src="">
 </div>
 
-<div class="container" id="shop">
-  <h2 class="section-title">Nos Nouvelles Abayas</h2>
-  <div class="product-grid" id="productGrid"></div>
+<header>
+    <div class="container">
+        <div class="logo" onclick="location.reload()">ALHAYA</div>
+        <div class="search-box">
+            <i class="fa fa-search" style="margin-right:10px; color:#aaa;"></i>
+            <input type="text" id="searchInput" placeholder="Que recherchez-vous ?" onkeyup="searchProduct()">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-btn" onclick="showCart()">
+                <i class="fa fa-shopping-bag"></i>
+                <span id="cartCount"></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="hero">
+        <div>
+            <h1>Collections Ramadan 2026</h1>
+            <p>L'excellence de la mode pudique à Abidjan</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Nos Nouveautés</h2>
+    <div class="product-grid" id="productGrid"></div>
 </div>
 
 <div id="cartPopup">
-  <h3>🛒 Votre Panier</h3>
-  <div id="cartItems"></div>
-  <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-  <h3 style="text-align:center;">Total: <span id="cartTotal">0</span> FCFA</h3>
-  <button class="btn" onclick="checkoutWhatsApp()">Commander sur WhatsApp</button>
-  <button class="btn" style="background:#666;" onclick="hideCart()">Fermer</button>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3>🛍️ Votre Panier</h3>
+        <i class="fa fa-times" onclick="hideCart()" style="cursor:pointer; font-size:20px;"></i>
+    </div>
+    <div id="cartItems" style="margin-top:20px;"></div>
+    <div style="margin-top:30px; border-top: 2px solid #eee; padding-top:20px;">
+        <div style="display:flex; justify-content:space-between; font-size:20px; font-weight:800;">
+            <span>Total :</span>
+            <span id="cartTotal" style="color:var(--primary);">0</span><span> FCFA</span>
+        </div>
+        <button class="btn-add" style="margin-top:20px; height:55px;" onclick="checkoutWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Commander maintenant
+        </button>
+    </div>
 </div>
 
 <footer>
-  <p>© 2026 ALHAYA BY NOUR - Abidjan, Côte d'Ivoire</p>
-  <p style="font-size: 12px; color: #888;">Qualité supérieure | Livraison rapide</p>
+    <div class="container">
+        <p style="font-weight:700; color:white;">ALHAYA BY NOUR</p>
+        <p>Boutique de référence à Abidjan, Côte d'Ivoire</p>
+        <div style="margin:20px 0; font-size:24px;">
+            <i class="fab fa-instagram" style="margin:0 10px;"></i>
+            <i class="fab fa-facebook" style="margin:0 10px;"></i>
+            <i class="fab fa-whatsapp" style="margin:0 10px;"></i>
+        </div>
+        <p style="font-size: 12px; color: #666;">© 2026 Tous droits réservés.</p>
+    </div>
 </footer>
 
 <script>
-// ===== TES IMAGES LOCALES =====
 const produits = [
-  {
-    nom: "Ensemble Jupe - Noir", 
-    prix: 30000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52.jpeg"
-  },
-  {
-    nom: "Abaya Safiya - Olive", 
-    prix: 32000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (1).jpeg"
-  },
-  {
-    nom: "Abaya Simple - Bleu", 
-    prix: 25000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (1).jpeg"
-  },
-  {
-    nom: "Abaya Nour - Rose", 
-    prix: 35000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (2).jpeg"
-  },
-  {
-    nom: "Abaya Simple - Gris", 
-    prix: 25000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (3).jpeg"
-  },
-  {
-    nom: "Abaya Classic", 
-    prix: 28000, 
-    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53.jpeg"
-  }
+    { nom: "Ensemble Jupe - Noir", prix: 30000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52.jpeg" },
+    { nom: "Abaya Safiya - Olive", prix: 32000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (1).jpeg" },
+    { nom: "Abaya Simple - Bleu", prix: 25000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (1).jpeg" },
+    { nom: "Abaya Nour - Rose", prix: 35000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (2).jpeg" },
+    { nom: "Abaya Simple - Gris", prix: 25000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (3).jpeg" },
+    { nom: "Abaya Classic", prix: 28000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53.jpeg" }
 ];
 
 function displayProducts(list){
-  let grid = document.getElementById("productGrid");
-  grid.innerHTML = "";
-  list.forEach((p,i)=>{
-    grid.innerHTML += `
-    <div class="product-card">
-      <img src="${p.image}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/300x400?text=Image+Non+Trouvée'">
-      <h4>${p.nom}</h4>
-      <p>${p.prix.toLocaleString()} FCFA</p>
-      <button class="btn" onclick="addToCart(${produits.indexOf(p)})">Ajouter au panier</button>
-    </div>`;
-  });
+    let grid = document.getElementById("productGrid");
+    grid.innerHTML = "";
+    list.forEach((p)=>{
+        grid.innerHTML += `
+        <div class="product-card">
+            <div class="img-container" onclick="openZoom('${p.image}')">
+                <img src="${p.image}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/400x500?text=Image+Indisponible'">
+            </div>
+            <div class="card-info">
+                <h4>${p.nom}</h4>
+                <div class="price">${p.prix.toLocaleString()} FCFA</div>
+                <button class="btn-add" onclick="addToCart(${produits.indexOf(p)})">
+                    <i class="fa fa-cart-plus"></i> Ajouter au panier
+                </button>
+            </div>
+        </div>`;
+    });
+}
+
+// FONCTION ZOOM AUTO
+function openZoom(src) {
+    const overlay = document.getElementById('zoomOverlay');
+    const zoomImg = document.getElementById('zoomImg');
+    zoomImg.src = src;
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Empêche de scroller derrière
+}
+
+function closeZoom() {
+    document.getElementById('zoomOverlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 function searchProduct(){
-  let term = document.getElementById("searchInput").value.toLowerCase();
-  let filtered = produits.filter(p => p.nom.toLowerCase().includes(term));
-  displayProducts(filtered);
+    let term = document.getElementById("searchInput").value.toLowerCase();
+    let filtered = produits.filter(p => p.nom.toLowerCase().includes(term));
+    displayProducts(filtered);
 }
 
 let cart = [];
 function addToCart(i){
-  cart.push(produits[i]);
-  updateCart();
-  showCart();
+    cart.push(produits[i]);
+    updateCart();
+    showCart();
 }
 
 function updateCart(){
-  let itemsDiv = document.getElementById("cartItems");
-  let countSpan = document.getElementById("cartCount");
-  let total = 0;
-  itemsDiv.innerHTML = "";
-  
-  cart.forEach((p, idx)=>{ 
-    total += p.prix; 
-    itemsDiv.innerHTML += `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:14px;">
-        <span>${p.nom}</span>
-        <b>${p.prix.toLocaleString()} FCFA</b>
-      </div>`; 
-  });
-  
-  document.getElementById("cartTotal").innerText = total.toLocaleString();
-  countSpan.innerText = cart.length > 0 ? `(${cart.length})` : '';
+    let itemsDiv = document.getElementById("cartItems");
+    let countSpan = document.getElementById("cartCount");
+    let total = 0;
+    itemsDiv.innerHTML = "";
+    
+    cart.forEach((p)=>{ 
+        total += p.prix; 
+        itemsDiv.innerHTML += `
+            <div class="cart-item">
+                <span>${p.nom}</span>
+                <b>${p.prix.toLocaleString()} FCFA</b>
+            </div>`; 
+    });
+    
+    document.getElementById("cartTotal").innerText = total.toLocaleString();
+    countSpan.innerText = cart.length > 0 ? cart.length : '';
 }
 
-function showCart(){document.getElementById("cartPopup").style.display="block";}
-function hideCart(){document.getElementById("cartPopup").style.display="none";}
+function showCart(){ document.getElementById("cartPopup").style.display="block"; }
+function hideCart(){ document.getElementById("cartPopup").style.display="none"; }
 
 function checkoutWhatsApp(){
-  if(cart.length==0){alert("Le panier est vide !");return;}
-  let message = `Bonjour ALHAYA,%0AJe souhaite commander :%0A`;
-  let total=0;
-  cart.forEach(p=>{ message += `- ${p.nom} (${p.prix.toLocaleString()} FCFA)%0A`; total += p.prix; });
-  message += `%0ATotal: ${total.toLocaleString()} FCFA%0A%0AMes infos :%0ANom:%0AVille:`;
-  window.open(`https://wa.me/2250778136527?text=${message}`);
+    if(cart.length==0){alert("Le panier est vide !");return;}
+    let message = `Bonjour ALHAYA,%0AJe souhaite commander :%0A`;
+    cart.forEach(p=>{ message += `- ${p.nom} (${p.prix.toLocaleString()} FCFA)%0A`; });
+    message += `%0ATotal: ${document.getElementById("cartTotal").innerText} FCFA%0A%0AProcédez à ma livraison svp.`;
+    window.open(`https://wa.me/2250778136527?text=${message}`);
 }
 
-function showSection(id){
-  document.getElementById('shop').style.display = 'block';
-}
-
-// Lancement
 displayProducts(produits);
 </script>
-
 </body>
 </html>
