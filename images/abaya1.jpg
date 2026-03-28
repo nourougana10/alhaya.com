@@ -1,1 +1,8 @@
-
+const produits = [
+    { nom: "Ensemble Jupe - Noir", prix: 30000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52.jpeg" },
+    { nom: "Abaya Safiya - Olive", prix: 32000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (1).jpeg" },
+    { nom: "Abaya Simple - Bleu", prix: 25000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (1).jpeg" },
+    { nom: "Abaya Nour - Rose", prix: 35000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (2).jpeg" },
+    { nom: "Abaya Simple - Gris", prix: 25000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (3).jpeg" },
+    { nom: "Abaya Classic", prix: 28000, image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53.jpeg" }
+];
